@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { CreateSetHeader } from "@/components/shared/CreateSetHeader";
-import { CardInputRow } from "@/components/shared/CardInputRow";
-import { ActionRow } from "@/components/shared/ActionRow";
+import { CreateSetHeader } from "@/app/(main)/create-set/_components/CreateSetHeader";
+import { CardInputRow } from "@/app/(main)/create-set/_components/CardInputRow";
+import { ActionRow } from "@/app/(main)/create-set/_components/ActionRow";
 
 export default function CreateSetPage() {
     const form = useForm<CreateSetSchemaType>({

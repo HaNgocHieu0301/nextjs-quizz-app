@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Settings, Shuffle, Trash2 } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { SettingsDialogContent } from "./SettingsDiaglog";
+import { SettingsDialogContent } from "@/app/(main)/create-set/_components/SettingsDiaglog";
 import { ImportDialog } from "./ImportDiaglog";
-import { QuizzTooltip} from "./QuizzTooltip"
+import { QuizzTooltip} from "@/app/_components/QuizzTooltip"
 
 
 export const ActionRow = () => {
