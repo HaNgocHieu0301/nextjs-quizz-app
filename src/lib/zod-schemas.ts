@@ -14,7 +14,8 @@ export const createSetSchema = z.object({
 export const importSchema = z.object({
   sourceText: z.string().optional(),
   contentType: z.enum(["vocabulary", "knowledge"]),
-  cardCount: z.coerce.number().min(1, "Số lượng phải lớn hơn 0").max(50, "Số lượng tối đa là 50"),
+  cardCount: z.coerce.number<number>().min(1, "Số lượng phải lớn hơn 0").max(50, "Số lượng tối đa là 50"),
 });
 
 export type CreateSetSchemaType = z.infer<typeof createSetSchema>;
+export type ImportSchemaType = z.infer<typeof importSchema>;
