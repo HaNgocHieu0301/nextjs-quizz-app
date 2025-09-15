@@ -9,7 +9,7 @@ interface SetFooterProps {
 
 export const SetFooter = ({ authorName, avatarUrl, createdAt }: SetFooterProps) => {
   return (
-    <div className="mt-12 flex items-center gap-4">
+    <div className="my-8 flex items-center gap-4">
       <Avatar>
         <AvatarImage src={avatarUrl} alt={authorName} />
         <AvatarFallback>{authorName.charAt(0).toUpperCase()}</AvatarFallback>

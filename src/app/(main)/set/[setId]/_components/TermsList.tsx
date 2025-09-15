@@ -18,7 +18,7 @@ export const TermsList = ({ cards }: TermsListProps) => {
     <div className="space-y-4">
        <h2 className="text-xl font-bold">Thuật ngữ trong học phần này ({cards.length})</h2>
       {cards.map((card) => (
-        <Card key={card.id} className="p-4 flex justify-between items-center">
+        <Card key={card.id} className="p-4 flex justify-between items-center gap-4">
           <div className="flex gap-16">
             <span className="w-48">{card.term}</span>
             <span>{card.definition}</span>

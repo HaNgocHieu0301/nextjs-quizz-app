@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Upload, Star } from "lucide-react";
 
 interface SetHeaderProps {
-  title: string;
+  title: string | undefined;
 }
 
 export const SetHeader = ({ title }: SetHeaderProps) => {

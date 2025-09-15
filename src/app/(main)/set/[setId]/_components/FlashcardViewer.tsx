@@ -46,7 +46,7 @@ export const FlashcardViewer = ({ cards }: FlashcardViewerProps) => {
     <div className="flex flex-col items-center justify-center w-full mt-8">
       {/* Flashcard Box */}
       <Card 
-        className="relative w-full h-[300px] flex items-center justify-center text-3xl font-bold rounded-lg shadow-xl cursor-pointer select-none"
+        className="relative w-full h-[500px] flex items-center justify-center text-3xl font-bold rounded-lg shadow-xl cursor-pointer select-none"
         onClick={handleFlip} // Click vào thẻ để lật
       >
         <div className="absolute top-4 right-4 flex gap-2">

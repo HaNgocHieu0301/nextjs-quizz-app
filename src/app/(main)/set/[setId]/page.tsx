@@ -1,46 +1,63 @@
 // src/app/(main)/set/[setId]/page.tsx
-"use client"; // Tạm thời dùng client component để dễ phát triển
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 import { SetHeader } from "@/app/(main)/set/[setId]/_components/SetHeader";
 import { StudyModes } from "@/app/(main)/set/[setId]/_components/StudyModes";
 import { TermsList } from "@/app/(main)/set/[setId]/_components/TermsList";
 import { SetFooter } from "@/app/(main)/set/[setId]/_components/SetFooter";
 import { FlashcardViewer } from "@/app/(main)/set/[setId]/_components/FlashcardViewer";
+import { getCollectionById, Collection as CollectionRecord, Card as CardRecord } from "@/services/api";
 
-// Dữ liệu mẫu (giữ nguyên)
-const mockSetData = {
-  id: "clx123abc",
-  title: "TESTSTSET",
-  author: {
-    name: "hieuha0301",
-    avatarUrl: "https://github.com/shadcn.png",
-  },
-  createdAt: "4 ngày trước",
-  cards: [
-    { id: "1", term: "123", definition: "234" },
-    { id: "2", term: "234", definition: "456" },
-    { id: "3", term: "Hello", definition: "Xin chào" },
-    { id: "4", term: "World", definition: "Thế giới" },
-  ],
-};
+export default function SetDetailPage() {
+  const params = useParams();
+  const setId = params.setId as string;
 
-export default function SetDetailPage({ params }: { params: { setId: string } }) {
-  // Trong tương lai, bạn sẽ dùng params.setId để fetch dữ liệu
-  const set = mockSetData;
+  const [collection, setCollection] = useState<CollectionRecord | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [cards, setCards] = useState<CardRecord[]>([]);
+
+  useEffect(() => {
+    if (!setId) return;
+
+    async function fetchSetDetails() {
+      try {
+        const response = await getCollectionById(setId);
+        const collection = response.data
+        setCollection(collection);
+        setCards(collection.expand?.['cards(collection)'] || []);
+      } catch (error: any) {
+        console.error("Lỗi khi tải chi tiết học phần:", error);
+        setError("Lỗi khi tải chi tiết học phần");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchSetDetails();
+  }, [setId]);
+
+  if (loading) {
+    return <div className="text-center p-8">Đang tải học phần..</div>;
+  }
+
+  if (error) {
+    return <div className="text-center p-8 text-red-500">{error}</div>;
+  }
 
   return (
     <div className="max-w-5xl mx-auto p-8">
-      <SetHeader title={set.title} />
+      <SetHeader title={collection?.title} />
       <StudyModes />
-
-      <FlashcardViewer cards={set.cards} />
-      <TermsList cards={set.cards} />
-
-      <SetFooter 
-        authorName={set.author.name}
-        avatarUrl={set.author.avatarUrl}
-        createdAt={set.createdAt}
-      />
+      <FlashcardViewer cards={cards} />
+      {/* <SetFooter
+        authorName={collection?.author.name}
+        avatarUrl={collection?.author.avatarUrl}
+        createdAt={collection?.createdAt}
+      /> */}
+      <TermsList cards={cards} />
     </div>
   );
 }

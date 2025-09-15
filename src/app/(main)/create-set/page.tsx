@@ -12,8 +12,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { CreateSetHeader } from "@/app/(main)/create-set/_components/CreateSetHeader";
 import { CardInputRow } from "@/app/(main)/create-set/_components/CardInputRow";
 import { ActionRow } from "@/app/(main)/create-set/_components/ActionRow";
+import { createCollection } from "@/services/api";
+import { useRouter } from 'next/navigation';
 
 export default function CreateSetPage() {
+    const router = useRouter();
     const form = useForm<CreateSetSchemaType>({
         resolver: zodResolver(createSetSchema),
         defaultValues: {
@@ -31,10 +34,15 @@ export default function CreateSetPage() {
         name: "cards",
     });
 
-    const onSubmit = (data: CreateSetSchemaType) => {
-        // TODO: process call API here
-        console.log(data);
-        alert("Check console for form data!");
+    const onSubmit = async(data: CreateSetSchemaType) => {
+        try{
+            await createCollection(data);
+            alert("Tạo bộ thẻ thành công!");
+            router.push(`/sets`);
+        }catch(error){
+            console.error("Error creating set:", error);
+            alert("Đã có lỗi xảy ra khi tạo bộ thẻ.");
+        }
     };
 
     return (
