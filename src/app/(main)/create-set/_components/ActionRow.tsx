@@ -19,7 +19,7 @@ export const ActionRow = () => {
                 </ImportDialog>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2" suppressHydrationWarning={true}>
                 <TooltipProvider>
                     {/* Settings button */}
                     <Dialog>

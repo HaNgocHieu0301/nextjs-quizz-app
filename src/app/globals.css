@@ -121,3 +121,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .sidebar {
+    width: 16rem;
+    transition: width 0.2s ease-in-out;
+  }
+
+  .sidebar[data-collapsed="true"] {
+    width: 5rem;
+  }
+
+  .sidebar-content {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  .sidebar[data-collapsed="true"] .sidebar-content {
+    opacity: 0;
+  }
+}
