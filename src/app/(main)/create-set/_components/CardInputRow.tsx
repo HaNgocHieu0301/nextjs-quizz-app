@@ -1,9 +1,9 @@
 // src/components/shared/CardInputRow.tsx
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2, GripVertical, Image as ImageIcon } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 
 interface CardInputRowProps {
     index: number;
@@ -36,20 +36,19 @@ export const CardInputRow = ({ index, onRemove, isDeletable }: CardInputRowProps
                         render={({ field }) => (
                             <FormItem>
                                 <FormControl>
-                                    <Input placeholder="Thuật ngữ" {...field} className="py-6" />
+                                    <Textarea placeholder="Thuật ngữ" {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <div className="flex items-center gap-2">
                         <FormField
                             control={control}
                             name={`cards.${index}.definition`}
                             render={({ field }) => (
                                 <FormItem className="flex-1">
                                     <FormControl>
-                                        <Input placeholder="Định nghĩa" {...field} className="py-6" />
+                                        <Textarea placeholder="Định nghĩa" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -58,7 +57,6 @@ export const CardInputRow = ({ index, onRemove, isDeletable }: CardInputRowProps
                         {/* <Button variant="outline" size="icon" className="h-[52px] w-[52px] shrink-0">
                             <ImageIcon className="w-5 h-5" />
                         </Button> */}
-                    </div>
                 </div>
             </div>
         </div>);

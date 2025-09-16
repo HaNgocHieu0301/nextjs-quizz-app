@@ -1,6 +1,7 @@
 import {z} from 'zod';
 
 export const flashcardSchema = z.object({
+    id: z.string().optional(),
     term: z.string().min(1, {message: "Term is required"}),
     definition: z.string().min(1, {message: "Definition is required"}),
 });

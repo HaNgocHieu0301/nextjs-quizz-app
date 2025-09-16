@@ -49,7 +49,7 @@ export default function SetDetailPage() {
 
   return (
     <div className="max-w-5xl mx-auto p-8">
-      <SetHeader title={collection?.title} />
+      <SetHeader title={collection?.title} setId={setId} />
       <StudyModes />
       <FlashcardViewer cards={cards} />
       {/* <SetFooter
