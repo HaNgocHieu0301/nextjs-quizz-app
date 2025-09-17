@@ -18,7 +18,6 @@ export const NAV_SECTIONS: NavSection[] = [
         items: [
             { label: "Trang chủ", href: "/", icon: Home },
             { label: "Thư viện của bạn", href: "/sets", icon: Folder },
-            { label: "Thông báo", href: "#", icon: Bell, badge: 2 },
         ],
     },
     {
@@ -27,12 +26,5 @@ export const NAV_SECTIONS: NavSection[] = [
             { label: "Thư mục của bạn", href: "/folders", icon: FolderOpen }, // Giả sử có route /folders
             { label: "Tạo mới", href: "/create-set", icon: Plus },
         ],
-    },
-    {
-        title: "Bắt đầu tại đây",
-        items: [
-            { label: "Thẻ ghi nhớ", href: "/sets", icon: StickyNote },
-            { label: "Lời giải chuyên gia", href: "#", icon: NotebookText },
-        ],
-    },
+    }
 ];

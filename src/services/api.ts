@@ -114,3 +114,7 @@ export const updateCard = (id: string, data: { term: string; definition: string 
 export const deleteCard = (id: string) => {
     return apiClient.delete(`/collections/cards/records/${id}`);
 };
+
+export const deleteCollection = (id: string) => {
+    return apiClient.delete(`/collections/collections/records/${id}`);
+};

@@ -1,5 +1,8 @@
 // src/app/(main)/set/[setId]/_components/SetHeader.tsx
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
     MoreHorizontal,
@@ -20,6 +23,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { deleteCollection } from "@/services/api";
 
 interface SetHeaderProps {
   title: string | undefined;
@@ -27,6 +31,20 @@ interface SetHeaderProps {
 }
 
 export const SetHeader = ({ title, setId }: SetHeaderProps) => {
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    if (confirm("Bạn có chắc chắn muốn xóa bộ thẻ này không?")) {
+      try {
+        await deleteCollection(setId);
+        router.push("/sets");
+      } catch (error) {
+        console.error("Failed to delete collection:", error);
+        alert("Có lỗi xảy ra khi xóa bộ thẻ");
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="text-3xl font-bold">{title}</h1>
@@ -73,7 +91,10 @@ export const SetHeader = ({ title, setId }: SetHeaderProps) => {
                     <span>Nhúng</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+                <DropdownMenuItem 
+                    className="text-destructive focus:text-destructive focus:bg-destructive/10"
+                    onClick={handleDelete}
+                >
                     <Trash2 className="mr-2 h-4 w-4" />
                     <span>Xóa</span>
                 </DropdownMenuItem>

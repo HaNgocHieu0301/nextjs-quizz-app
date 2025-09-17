@@ -35,7 +35,7 @@ export default function SetsPage() {
                     Tạo học phần mới
                 </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex flex-col gap-6">
                 {collections.map((col) => (
                     <Link href={`/set/${col.id}`} key={col.id}>
                         <div className="bg-white rounded-lg shadow-sm p-6 cursor-pointer hover:shadow-md transition-shadow">
